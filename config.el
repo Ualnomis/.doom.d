@@ -74,3 +74,11 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; resolve printing remvoes all text faces in js-comint-repl
+;; source: https://github.com/emacs-ess/ESS/issues/1193
+(after! js-comint
+  (defun js-comint-mode-hook-setup ()
+    (add-hook 'comint-output-filter-functions #'xterm-color-filter -90 t)
+    (setq-local ansi-color-for-comint-mode 'filter))
+  (add-hook 'js-comint-mode-hook 'js-comint-mode-hook-setup t))
