@@ -80,3 +80,5 @@
     "Feed `eshell-did-you-mean--all-commands'."
     (unless eshell-did-you-mean--all-commands
       (setq eshell-did-you-mean--all-commands (all-completions "" (pcomplete-completions))))))
+
+(use-package! lsp-biome)
