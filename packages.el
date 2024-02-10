@@ -51,4 +51,3 @@
 
 (package! lsp-biome
   :recipe (:host github :repo "cxa/lsp-biome"))
-
