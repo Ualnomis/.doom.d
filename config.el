@@ -15,7 +15,7 @@
 ;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
 ;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-;; - `doom-unicode-font' -- for unicode glyphs
+;; - `doom-symbol-font' -- for symbols
 ;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
@@ -75,5 +75,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+(after! eshell-did-you-mean
+  (defun eshell-did-you-mean--get-all-commands ()
+    "Feed `eshell-did-you-mean--all-commands'."
+    (unless eshell-did-you-mean--all-commands
+      (setq eshell-did-you-mean--all-commands (all-completions "" (pcomplete-completions))))))
