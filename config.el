@@ -83,3 +83,6 @@
 
 (after! apheleia
   (use-package! lsp-biome))
+
+(use-package! rime
+  :init (setq default-input-method "rime"))
