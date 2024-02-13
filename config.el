@@ -74,6 +74,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(use-package! xterm-color)
 
 (after! eshell
   (add-hook 'eshell-before-prompt-hook
@@ -82,6 +83,12 @@
   (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
   (setq eshell-output-filter-functions (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
   (setenv "TERM" "xterm-256color"))
+
+(after! js-comint
+  (defun js-comint-mode-hook-setup ()
+    (add-hook 'comint-output-filter-functions #'xterm-color-filter -90 t)
+    (setq-local ansi-color-for-comint-mode 'filter))
+  (add-hook 'js-comint-mode-hook 'js-comint-mode-hook-setup t))
 
 (after! eshell-did-you-mean
   (defun eshell-did-you-mean--get-all-commands ()
