@@ -51,5 +51,5 @@
 
 (package! lsp-biome
   :recipe (:host github :repo "cxa/lsp-biome"))
-
 (package! rime)
+(package! xterm-color)

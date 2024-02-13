@@ -75,6 +75,15 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(after! eshell
+  (add-hook 'eshell-before-prompt-hook
+            (lambda ()
+              (setq xterm-color-preserve-properties t)))
+
+  (add-to-list 'eshell-preoutput-filter-functions 'xterm-color-filter)
+  (setq eshell-output-filter-functions (remove 'eshell-handle-ansi-color eshell-output-filter-functions))
+  (setenv "TERM" "xterm-256color"))
+
 (after! eshell-did-you-mean
   (defun eshell-did-you-mean--get-all-commands ()
     "Feed `eshell-did-you-mean--all-commands'."
