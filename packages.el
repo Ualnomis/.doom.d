@@ -53,3 +53,5 @@
   :recipe (:host github :repo "cxa/lsp-biome"))
 (package! rime)
 (package! xterm-color)
+(package! nodejs-repl :disable t)
+(package! js-comint)
