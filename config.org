@@ -2,26 +2,6 @@
 #+PROPERTY: header-args :tangle config.el
 #+AUTHOR: Ualnomis
 
-* Lexical Binding in Emacs Lisp
-In Emacs Lisp, lexical binding offers an alternative to the default dynamic binding, allowing variables to be bound in the scope where they are defined, rather than dynamically. This scoping model can lead to more predictable code and can improve performance. Since Emacs version 24, lexical binding has been available and can be enabled on a per-file basis.
-
-To enable lexical binding in an Emacs Lisp file, a special declaration must be included in the file's header. This is particularly relevant for users of Doom Emacs, who may wish to enable lexical binding in their configuration files to take advantage of the benefits it offers.
-
-Consider the following example, which demonstrates how to enable lexical binding in a =config.el= file located in the Doom Emacs directory (=DOOMDIR=):
-
-#+BEGIN_SRC emacs-lisp
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-#+END_SRC
-
-** Explanation
-
-- The initial =;;;= marks the beginning of a comment in Emacs Lisp. Using three semicolons is a conventional way to denote file headers or major sections of a file.
-- =$DOOMDIR/config.el= specifies the intended file for this setting, aiding documentation. In practice, the path is not functional within this line but serves as a clear identifier for human readers.
-- The =-*- lexical-binding: t; -*-= portion is the critical part of this line. It's a special syntax that Emacs looks for in the first line of a file (or the second, if the first line is a shebang) to set file-local variables.
-  - =lexical-binding: t;= specifically enables lexical scope for the file, with =t= signifying true.
-
-Enabling lexical binding allows developers to write Emacs Lisp code that is more in line with the scoping rules of modern programming languages, potentially making the code more intuitive and performant.
-
 * Config Doom Emacs
 Whenever you reconfigure a package, make sure to wrap your config in an `after!' block, otherwise Doom's defaults may override your settings. E.g.
 #+begin_src emacs-lisp :tangle no
@@ -47,6 +27,26 @@ Here are some additional functions/macros that will help you configure Doom.
 To get information about any of these functions/macros, move the cursor over the highlighted symbol at press 'K' (non-evil users must press 'C-c c k'). This will open documentation for it, including demos of how they are used. Alternatively, use `C-h o' to look up a symbol (functions, variables, faces, etc).
 
 You can also try 'gd' (or 'C-c c d') to jump to their definition and see how they are implemented.
+
+* Lexical Binding in Emacs Lisp
+In Emacs Lisp, lexical binding offers an alternative to the default dynamic binding, allowing variables to be bound in the scope where they are defined, rather than dynamically. This scoping model can lead to more predictable code and can improve performance. Since Emacs version 24, lexical binding has been available and can be enabled on a per-file basis.
+
+To enable lexical binding in an Emacs Lisp file, a special declaration must be included in the file's header. This is particularly relevant for users of Doom Emacs, who may wish to enable lexical binding in their configuration files to take advantage of the benefits it offers.
+
+Consider the following example, which demonstrates how to enable lexical binding in a =config.el= file located in the Doom Emacs directory (=DOOMDIR=):
+
+#+BEGIN_SRC emacs-lisp
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+#+END_SRC
+
+** Explanation
+
+- The initial =;;;= marks the beginning of a comment in Emacs Lisp. Using three semicolons is a conventional way to denote file headers or major sections of a file.
+- =$DOOMDIR/config.el= specifies the intended file for this setting, aiding documentation. In practice, the path is not functional within this line but serves as a clear identifier for human readers.
+- The =-*- lexical-binding: t; -*-= portion is the critical part of this line. It's a special syntax that Emacs looks for in the first line of a file (or the second, if the first line is a shebang) to set file-local variables.
+  - =lexical-binding: t;= specifically enables lexical scope for the file, with =t= signifying true.
+
+Enabling lexical binding allows developers to write Emacs Lisp code that is more in line with the scoping rules of modern programming languages, potentially making the code more intuitive and performant.
 
 * Identity
 Some functionality uses this to identify you, e.g. GPG configuration, email clients, file templates and snippets. It is optional.
@@ -164,3 +164,4 @@ Company-Ispell: lookup-words error: No plain word-list found at systemdefault lo
       #+begin_src sh :tangle no
       sudo apt install wamerican
       #+end_src
+
