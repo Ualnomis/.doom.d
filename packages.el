@@ -55,3 +55,4 @@
 (package! xterm-color)
 (package! nodejs-repl :disable t)
 (package! js-comint)
+(package! org-gtd)
