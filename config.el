@@ -15,6 +15,7 @@
         ("g" "GTD agenda"
          ((agenda "")
           (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-header-map nil)
                        (org-super-agenda-groups
                         '(;; Each group has an implicit boolean OR operator between its selectors. Thus sequence of selector is matter.
                           (:name "All actions ready to be execute"
