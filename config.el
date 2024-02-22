@@ -4,11 +4,31 @@
 
 (setq org-directory "/mnt/c/Users/simon/Dropbox/org/")
 
+(use-package! org-ql)
+
+(after! org-agenda
+  (org-super-agenda-mode))
+(setq org-agenda-custom-commands
+      '(("n" "Agenda and all TODOs"
+         ((agenda "")
+          (alltodo "")))
+        ("g" "GTD agenda"
+         ((agenda "")
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '(;; Each group has an implicit boolean OR operator between its selectors. Thus sequence of selector is matter.
+                          (:name "All actions ready to be execute"
+                           :discard (:habit t)
+                           :todo "TODO"
+                           )
+                          (:discard (:anything t))
+                          ))))))))
+
 (setq org-gtd-directory "/mnt/c/Users/simon/Dropbox/org/gtd/")
 (setq org-agenda-files (list org-gtd-directory))
 
 (use-package! org-gtd
-  :after org
+  :after org org-agenda org-super-agenda
   :init
   (setq org-gtd-update-ack "3.0.0")
   :custom
@@ -16,6 +36,7 @@
   (org-gtd-next-suffix "(t)")
   (org-gtd-todo "NEXT")
   (org-gtd-todo-suffix "(n)")
+  (org-gtd-engage-prefix-width 24)
   :config
   (defun org-gtd-habit-create (&optional repeater)
     "Add a repeater to this item and store in org gtd.
@@ -32,8 +53,8 @@ determine how often you'll be reminded of this habit."
     (setq-local org-gtd--organize-type 'habit)
     (org-gtd-organize-apply-hooks)
     (org-gtd-refile--do org-gtd-habit org-gtd-habit-template))
-
   (setq org-gtd-habit-func #'org-gtd-habit-create)
+
   (defun org-gtd-calendar-create (&optional appointment-date)
     "Add a date/time to this item and store in org gtd.
 
@@ -58,8 +79,38 @@ non-interactively."
       (setq-local org-gtd--organize-type 'calendar)
       (org-gtd-organize-apply-hooks)
       (org-gtd-refile--do org-gtd-calendar org-gtd-calendar-template)))
-
   (setq org-gtd-calendar-func #'org-gtd-calendar-create)
+
+  (defun org-gtd-engage ()
+    "Display `org-agenda' customized by org-gtd."
+    (interactive)
+    (org-gtd-core-prepare-agenda-buffers)
+    (with-org-gtd-context
+        (let* ((project-format-prefix
+                (format " %%i %%-%d:(org-gtd-agenda--prefix-format) "
+                        org-gtd-engage-prefix-width))
+               (org-agenda-custom-commands
+                `(("g" "Scheduled today and all NEXT items"
+                   ((agenda ""
+                            ((org-agenda-span 1)
+                             (org-agenda-start-day nil)
+                             (org-agenda-skip-additional-timestamps-same-entry t)))
+                    (alltodo ""
+                             ((org-agenda-overriding-header "")
+                              (org-super-agenda-header-map nil)
+                              (org-super-agenda-groups
+                               '(;; Each group has an implicit boolean OR operator between its selectors. Thus sequence of selector is matter.
+                                 (:name "All actions ready to be executed."
+                                  :discard (:habit t)
+                                  :todo "TODO"
+                                  )
+                                 (:discard (:anything t))
+                                 ))
+                              (org-agenda-prefix-format
+                               '((todo . ,project-format-prefix))))))))))
+          (org-agenda nil "g")
+          (goto-char (point-min)))))
+
   (org-gtd-mode))
 
 (use-package! xterm-color)
