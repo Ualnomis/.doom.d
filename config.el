@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dark+)
 
 (setq org-directory "/mnt/c/Users/simon/Dropbox/org/")
 
