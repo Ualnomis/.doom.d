@@ -64,11 +64,11 @@ There are two ways to load a theme. Both assume the theme is installed and avail
 * Org Mode
 If you use `org' and don't want your org files in the default location below, change `org-directory'. It must be set before org loads!
 #+begin_src emacs-lisp
-(setq org-directory "/mnt/c/Users/simon/iCloudDrive/org/")
+(setq org-directory "/mnt/c/Users/simon/Dropbox/org/")
 #+end_src
 ** Org GTD
 #+begin_src emacs-lisp
-(setq org-gtd-directory "/mnt/c/Users/simon/iCloudDrive/org/gtd/")
+(setq org-gtd-directory "/mnt/c/Users/simon/Dropbox/org/gtd/")
 (setq org-agenda-files (list org-gtd-directory))
 
 (use-package! org-gtd

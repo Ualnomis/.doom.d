@@ -2,9 +2,9 @@
 
 (setq doom-theme 'doom-one)
 
-(setq org-directory "/mnt/c/Users/simon/iCloudDrive/org/")
+(setq org-directory "/mnt/c/Users/simon/Dropbox/org/")
 
-(setq org-gtd-directory "/mnt/c/Users/simon/iCloudDrive/org/gtd/")
+(setq org-gtd-directory "/mnt/c/Users/simon/Dropbox/org/gtd/")
 (setq org-agenda-files (list org-gtd-directory))
 
 (use-package! org-gtd
