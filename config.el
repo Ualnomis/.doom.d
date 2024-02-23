@@ -44,7 +44,7 @@
 
 (after! org
   (setq org-todo-keywords
-        `((sequence "INBOX(i)" "TODO(t)" "PROJ(p)" "NEXT(n)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)" "Trash(t)")
+        `((sequence "TODO(t)" "INBOX(i)" "PROJ(p)" "NEXT(n)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)" "Trash(t)")
           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
           (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))))
 
