@@ -1,8 +1,57 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dark+)
 
-(setq org-directory "~/org/")
+(setq org-directory "/mnt/c/Users/simon/Dropbox/org/")
+(setq org-gtd-directory "/mnt/c/Users/simon/Dropbox/org/gtd/")
+
+(use-package! org-edna
+  :custom
+  (org-edna-use-inheritance t)
+  (org-edna-mode))
+
+(use-package! org-ql)
+
+(after! org-agenda
+  (org-super-agenda-mode))
+(setq org-agenda-custom-commands
+      '(("n" "Agenda and all TODOs"
+         ((agenda "")
+          (alltodo "")))
+        ("g" "GTD agenda"
+         ((agenda "")
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-header-map nil)
+                       (org-super-agenda-groups
+                        '(;; Each group has an implicit boolean OR operator between its selectors. Thus the sequence of selector is matter.
+                          (:name "INBOX"
+                           :todo "INBOX")
+                          (:discard (:habit t))
+                          (:discard (:todo "NEXT"))
+                          (:auto-parent t)
+                          (:discard (:anything t))
+                          ))))))))
+
+(after! org-capture
+  (setq org-capture-templates
+        `(
+          ;; for gtd
+          ("i" "INBOX" entry (file (lambda() (expand-file-name "inbox.org" org-gtd-directory)))
+           "* INBOX %?\n:PROPERTIES:\n:DATE_ADDED: %U\n:END:")
+          )))
+
+(setq org-agenda-files (list org-gtd-directory))
+
+(after! org
+  (setq org-todo-keywords
+        `((sequence "TODO(t)" "INBOX(i)" "PROJ(p)" "NEXT(n)" "WAIT(w)" "HOLD(h)" "IDEA(i)" "|" "DONE(d)" "KILL(k)" "Trash(t)")
+          (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)")
+          (sequence "|" "OKAY(o)" "YES(y)" "NO(n)"))))
+
+(setq org-refile-targets '((nil :maxlevel . 3)
+                          (org-agenda-files :maxlevel . 1)))
+
+(use-package! org-pomodoro)
 
 (use-package! xterm-color)
 
