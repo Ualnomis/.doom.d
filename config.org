@@ -128,6 +128,10 @@ If you use `org' and don't want your org files in the default location below, ch
 (setq org-refile-targets '((nil :maxlevel . 3)
                           (org-agenda-files :maxlevel . 1)))
 #+end_src
+** Org Pomodoro
+#+begin_src emacs-lisp
+(use-package! org-pomodoro)
+#+end_src
 
 * xterm-color
 #+begin_src emacs-lisp

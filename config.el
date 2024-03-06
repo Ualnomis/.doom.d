@@ -51,6 +51,8 @@
 (setq org-refile-targets '((nil :maxlevel . 3)
                           (org-agenda-files :maxlevel . 1)))
 
+(use-package! org-pomodoro)
+
 (use-package! xterm-color)
 
 (after! eshell

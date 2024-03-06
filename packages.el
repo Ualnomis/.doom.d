@@ -57,3 +57,4 @@
 (package! js-comint)
 (package! org-ql)
 (package! org-edna)
+(package! org-pomodoro)
