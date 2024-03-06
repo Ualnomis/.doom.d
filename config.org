@@ -129,6 +129,11 @@ If you use `org' and don't want your org files in the default location below, ch
                           (org-agenda-files :maxlevel . 1)))
 #+end_src
 ** Org Pomodoro
+Install `alsa-utils` before installing `org-pomodoro`.
+#+begin_src sh :tangle no
+sudo nala instapp alsa-utils
+#+end_src
+
 #+begin_src emacs-lisp
 (use-package! org-pomodoro)
 #+end_src
