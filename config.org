@@ -208,7 +208,7 @@ Fix `Wrong type argument: sequencep, 771`
 #+end_src
 
 Create the config in .emacs.d/.local/cache/rime/default.custom.yaml
-#+begin_src yaml :tangle no
+#+begin_src yaml :tangle ~/.emacs.d/.local/cache/rime/default.custom.yaml
 patch:
   schema_list:
     - schema: cangjie5
