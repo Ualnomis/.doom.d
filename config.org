@@ -208,7 +208,7 @@ Fix `Wrong type argument: sequencep, 771`
 #+end_src
 
 Create the config in .emacs.d/.local/cache/rime/default.custom.yaml
-#+begin_src yaml :tangle ~/.emacs.d/.local/cache/rime/default.custom.yaml
+#+begin_src yaml :tangle no
 patch:
   schema_list:
     - schema: cangjie5
@@ -235,4 +235,3 @@ Company-Ispell: lookup-words error: No plain word-list found at systemdefault lo
       #+begin_src sh :tangle no
       sudo apt install wamerican
       #+end_src
-
