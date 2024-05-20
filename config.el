@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq doom-theme 'doom-dark+)
+(setq doom-theme 'modus-vivendi)
 
 (setq org-directory "/mnt/c/Users/simon/Dropbox/org/")
 (setq org-gtd-directory "/mnt/c/Users/simon/Dropbox/org/gtd/")
@@ -53,6 +53,9 @@
 
 (use-package! org-pomodoro)
 
+(after! ob-mermaid
+  (setq ob-mermaid-cli-path "/home/ualnomis/.local/share/pnpm/mmdc"))
+
 (use-package! xterm-color)
 
 (after! eshell
@@ -73,6 +76,10 @@
 
 (after! apheleia
   (use-package! lsp-biome))
+
+(defun disable-apheleia-hook ()
+  (apheleia-mode -1))
+(add-hook 'lsp-eslint-after-open-hook 'disable-apheleia-hook)
 
 (after! eshell-did-you-mean
   (defun eshell-did-you-mean--get-all-commands ()
