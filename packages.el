@@ -58,3 +58,5 @@
 (package! org-ql)
 (package! org-edna)
 (package! org-pomodoro)
+(package! mermaid-mode)
+(package! ob-mermaid)

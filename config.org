@@ -58,7 +58,7 @@ Some functionality uses this to identify you, e.g. GPG configuration, email clie
 * Doom theme
 There are two ways to load a theme. Both assume the theme is installed and available. You can either set `doom-theme' or manually load a theme with the `load-theme' function. This is the default:
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-dark+)
+(setq doom-theme 'modus-vivendi)
 #+end_src
 
 * Org Mode
@@ -138,6 +138,20 @@ sudo nala instapp alsa-utils
 (use-package! org-pomodoro)
 #+end_src
 
+** ob-mermaid
+Install `mermaid-cli` first.
+
+#+begin_src emacs-lisp
+(after! ob-mermaid
+  (setq ob-mermaid-cli-path "/home/ualnomis/.local/share/pnpm/mmdc"))
+#+end_src
+
+#+begin_src json :tangle no
+{
+  "executablePath": "/usr/bin/chromium"
+}
+#+end_src
+
 * xterm-color
 #+begin_src emacs-lisp
 (use-package! xterm-color)
@@ -187,6 +201,12 @@ This determines the style of line numbers in effect. If set to `nil', line numbe
 #+begin_src emacs-lisp
 (after! apheleia
   (use-package! lsp-biome))
+#+end_src
+** ESLint
+#+begin_src emacs-lisp
+(defun disable-apheleia-hook ()
+  (apheleia-mode -1))
+(add-hook 'lsp-eslint-after-open-hook 'disable-apheleia-hook)
 #+end_src
 
 * Eshell
