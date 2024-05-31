@@ -197,17 +197,6 @@ This determines the style of line numbers in effect. If set to `nil', line numbe
     (setq-local ansi-color-for-comint-mode 'filter))
   (add-hook 'js-comint-mode-hook 'js-comint-mode-hook-setup t))
 #+end_src
-** Biome
-#+begin_src emacs-lisp
-(after! apheleia
-  (use-package! lsp-biome))
-#+end_src
-** ESLint
-#+begin_src emacs-lisp
-(defun disable-apheleia-hook ()
-  (apheleia-mode -1))
-(add-hook 'lsp-eslint-after-open-hook 'disable-apheleia-hook)
-#+end_src
 
 * Eshell
 Fix `Wrong type argument: sequencep, 771`
@@ -255,3 +244,20 @@ Company-Ispell: lookup-words error: No plain word-list found at systemdefault lo
       #+begin_src sh :tangle no
       sudo apt install wamerican
       #+end_src
+* lsp-bridge
+#+begin_src emacs-lisp
+(use-package! lsp-bridge
+  :config
+  (setq lsp-bridge-enable-log nil)
+  (global-lsp-bridge-mode))
+#+end_src
+* edit-indirect
+#+begin_src emacs-lisp
+(use-package! edit-indirect)
+#+end_src
+* treesit-auto
+#+begin_src emacs-lisp
+(use-package! treesit-auto
+  :config
+  (global-treesit-auto-mode))
+#+end_src

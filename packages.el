@@ -49,8 +49,7 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
-(package! lsp-biome
-  :recipe (:host github :repo "cxa/lsp-biome"))
+(package! lsp-mode :disable t)
 (package! rime)
 (package! xterm-color)
 (package! nodejs-repl :disable t)
@@ -60,3 +59,21 @@
 (package! org-pomodoro)
 (package! mermaid-mode)
 (package! ob-mermaid)
+(package! wucuo)
+(when (package! lsp-bridge
+        :recipe (:host github
+                 :repo "manateelazycat/lsp-bridge"
+                 :branch "master"
+                 :files ("*.el" "*.py" "acm" "core" "langserver" "multiserver" "resources")
+                 ;; do not perform byte compilation or native compilation for lsp-bridge
+                 :build (:not compile)))
+  (package! markdown-mode)
+  (package! yasnippet))
+(package! treesit-auto)
+(package! mmm-mode)
+(package! scss-mode)
+;; (package!  css-in-js
+;;   :recipe (:host github
+;;            :repo "orzechowskid/css-in-js.el"
+;;            :branch "master"))
+(package! edit-indirect)

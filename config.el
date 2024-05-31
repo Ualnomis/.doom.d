@@ -74,13 +74,6 @@
     (setq-local ansi-color-for-comint-mode 'filter))
   (add-hook 'js-comint-mode-hook 'js-comint-mode-hook-setup t))
 
-(after! apheleia
-  (use-package! lsp-biome))
-
-(defun disable-apheleia-hook ()
-  (apheleia-mode -1))
-(add-hook 'lsp-eslint-after-open-hook 'disable-apheleia-hook)
-
 (after! eshell-did-you-mean
   (defun eshell-did-you-mean--get-all-commands ()
     "Feed `eshell-did-you-mean--all-commands'."
@@ -93,3 +86,14 @@
 (setq-default tab-width 2)
 (setq js-indent-level 2)
 (setq css-indent-offset 2)
+
+(use-package! lsp-bridge
+  :config
+  (setq lsp-bridge-enable-log nil)
+  (global-lsp-bridge-mode))
+
+(use-package! edit-indirect)
+
+(use-package! treesit-auto
+  :config
+  (global-treesit-auto-mode))
