@@ -244,18 +244,16 @@ Company-Ispell: lookup-words error: No plain word-list found at systemdefault lo
       #+begin_src sh :tangle no
       sudo apt install wamerican
       #+end_src
-* lsp-bridge
+
+* CSS in JS
 #+begin_src emacs-lisp
-(use-package! lsp-bridge
-  :config
-  (setq lsp-bridge-enable-log nil)
-  (global-lsp-bridge-mode))
+(use-package! css-in-js-mode)
 #+end_src
-* edit-indirect
-#+begin_src emacs-lisp
-(use-package! edit-indirect)
-#+end_src
-* treesit-auto
+** tree-sitter-css-in-js Installation
+1. Download grammar binaries bundle(.so file) in Github releases
+2. Move .so file to ~/.emacs.d/.local/cache/tree-sitter
+
+* Treesit Auto
 #+begin_src emacs-lisp
 (use-package! treesit-auto
   :config
