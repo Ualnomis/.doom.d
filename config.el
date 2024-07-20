@@ -87,12 +87,7 @@
 (setq js-indent-level 2)
 (setq css-indent-offset 2)
 
-(use-package! lsp-bridge
-  :config
-  (setq lsp-bridge-enable-log nil)
-  (global-lsp-bridge-mode))
-
-(use-package! edit-indirect)
+(use-package! css-in-js-mode)
 
 (use-package! treesit-auto
   :config
